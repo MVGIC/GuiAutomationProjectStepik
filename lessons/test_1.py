@@ -32,7 +32,7 @@ print("Click Login Button")
 
 now_date = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 name_screenshot = "screenshot_" + now_date + ".png"
-driver.save_screenshot(".\\screen\\" + name_screenshot)
+driver.save_screenshot(".\\lessons\\screen\\" + name_screenshot)
 
 header = driver.find_element(By.XPATH, value="//span[@class='title']")  # XPATH
 value_text_products = header.text
