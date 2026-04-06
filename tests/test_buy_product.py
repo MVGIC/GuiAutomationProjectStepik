@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 from pages.cart_page import CartPage
+from pages.client_information_page import ClientInformationPage
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
 
@@ -24,3 +25,6 @@ def test_buy_product():
 
     cp = CartPage(driver)
     cp.move_to_checkout() # Переход к подтверждению товара
+
+    cip = ClientInformationPage(driver)
+    cip.input_client_information() # Ввод информации клиента для оформления покупки

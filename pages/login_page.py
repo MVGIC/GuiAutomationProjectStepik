@@ -54,7 +54,7 @@ class LoginPage(Base):
     # Methods (Steps)
 
     def authorization(self):
-        """ Авторизация в системе"""
+        """Авторизация в системе"""
         self.driver.get(self.url)
         self.driver.maximize_window()
         self.get_current_url()
