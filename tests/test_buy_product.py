@@ -4,8 +4,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from pages.cart_page import CartPage
 from pages.client_information_page import ClientInformationPage
+from pages.finish_page import FinishPage
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
+from pages.payment_page import PaymentPage
 
 
 def test_buy_product():
@@ -28,3 +30,9 @@ def test_buy_product():
 
     cip = ClientInformationPage(driver)
     cip.input_client_information() # Ввод информации клиента для оформления покупки
+
+    p = PaymentPage(driver)
+    p.finish_payment()
+
+    f = FinishPage(driver)
+    f.check_last_page()
