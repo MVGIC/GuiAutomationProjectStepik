@@ -1,3 +1,6 @@
+import time
+
+import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
@@ -10,29 +13,80 @@ from pages.main_page import MainPage
 from pages.payment_page import PaymentPage
 
 
-def test_buy_product():
+@pytest.mark.run(order=3)
+def test_buy_product_1():
     """Тест по покупке товара включает в себя:
             авторизацию, выбор товара, заполнение данных получателя, подтверждение покупки."""
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
     options.add_argument("--incognito")  # или options.add_argument("--guest")
     driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
-    print("Start test")
+    print("Start test 1")
 
     login = LoginPage(driver)
     login.authorization() # Авторизация
 
     mp = MainPage(driver)
-    mp.add_product_to_cart() # Добавление товара в корзину
+    mp.add_product_1_to_cart()  # Добавление товара в корзину
 
     cp = CartPage(driver)
     cp.move_to_checkout() # Переход к подтверждению товара
 
-    cip = ClientInformationPage(driver)
-    cip.input_client_information() # Ввод информации клиента для оформления покупки
+    # cip = ClientInformationPage(driver)
+    # cip.input_client_information() # Ввод информации клиента для оформления покупки
+    #
+    # p = PaymentPage(driver)
+    # p.finish_payment()
+    #
+    # f = FinishPage(driver)
+    # f.check_last_page()
 
-    p = PaymentPage(driver)
-    p.finish_payment()
+    print("Finish Test 1")
+    time.sleep(5)
+    driver.quit()
 
-    f = FinishPage(driver)
-    f.check_last_page()
+@pytest.mark.run(order=1)
+def test_buy_product_2():
+    """Тест по покупке товара включает в себя:
+            авторизацию, выбор товара, заполнение данных получателя, подтверждение покупки."""
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("detach", True)
+    options.add_argument("--incognito")  # или options.add_argument("--guest")
+    driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+    print("Start test 2")
+
+    login = LoginPage(driver)
+    login.authorization() # Авторизация
+
+    mp = MainPage(driver)
+    mp.add_product_2_to_cart()  # Добавление товара в корзину
+
+    cp = CartPage(driver)
+    cp.move_to_checkout() # Переход к подтверждению товара
+
+    print("Finish Test 2")
+    time.sleep(5)
+    driver.quit()
+
+@pytest.mark.run(order=2)
+def test_buy_product_3():
+    """Тест по покупке товара включает в себя:
+            авторизацию, выбор товара, заполнение данных получателя, подтверждение покупки."""
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("detach", True)
+    options.add_argument("--incognito")  # или options.add_argument("--guest")
+    driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+    print("Start test 3")
+
+    login = LoginPage(driver)
+    login.authorization() # Авторизация
+
+    mp = MainPage(driver)
+    mp.add_product_3_to_cart()  # Добавление товара в корзину
+
+    cp = CartPage(driver)
+    cp.move_to_checkout() # Переход к подтверждению товара
+
+    print("Finish Test 3")
+    time.sleep(5)
+    driver.quit()
