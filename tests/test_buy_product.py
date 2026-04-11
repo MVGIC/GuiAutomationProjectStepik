@@ -13,8 +13,8 @@ from pages.main_page import MainPage
 from pages.payment_page import PaymentPage
 
 
-@pytest.mark.run(order=3)
-def test_buy_product_1():
+# @pytest.mark.run(order=3)
+def test_buy_product_1(set_group):
     """Тест по покупке товара включает в себя:
             авторизацию, выбор товара, заполнение данных получателя, подтверждение покупки."""
     options = webdriver.ChromeOptions()
@@ -32,21 +32,21 @@ def test_buy_product_1():
     cp = CartPage(driver)
     cp.move_to_checkout() # Переход к подтверждению товара
 
-    # cip = ClientInformationPage(driver)
-    # cip.input_client_information() # Ввод информации клиента для оформления покупки
-    #
-    # p = PaymentPage(driver)
-    # p.finish_payment()
-    #
-    # f = FinishPage(driver)
-    # f.check_last_page()
+    cip = ClientInformationPage(driver)
+    cip.input_client_information() # Ввод информации клиента для оформления покупки
+
+    p = PaymentPage(driver)
+    p.finish_payment()
+
+    f = FinishPage(driver)
+    f.check_last_page()
 
     print("Finish Test 1")
     time.sleep(5)
     driver.quit()
 
-@pytest.mark.run(order=1)
-def test_buy_product_2():
+# @pytest.mark.run(order=1)
+def test_buy_product_2(set_up):
     """Тест по покупке товара включает в себя:
             авторизацию, выбор товара, заполнение данных получателя, подтверждение покупки."""
     options = webdriver.ChromeOptions()
@@ -68,7 +68,7 @@ def test_buy_product_2():
     time.sleep(5)
     driver.quit()
 
-@pytest.mark.run(order=2)
+# @pytest.mark.run(order=2)
 def test_buy_product_3():
     """Тест по покупке товара включает в себя:
             авторизацию, выбор товара, заполнение данных получателя, подтверждение покупки."""
