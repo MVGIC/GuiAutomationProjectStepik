@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class ClientInformationPage(Base):
@@ -58,8 +59,10 @@ class ClientInformationPage(Base):
     def input_client_information(self):
         with allure.step("Ввод клиентской информации при подтверждении покупки"):
             fake = Faker()
+            Logger.add_start_step(method="input_client_information")
             self.get_current_url()
             self.input_first_name(fake.first_name())
             self.input_last_name(fake.last_name())
             self.input_postal_code(fake.postcode())
             self.click_continue_button()
+            Logger.add_end_step(url=self.driver.current_url, method="input_client_information")

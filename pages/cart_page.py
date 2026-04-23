@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class CartPage(Base):
@@ -29,5 +30,7 @@ class CartPage(Base):
 
     def move_to_checkout(self):
         with allure.step("Переход на страницу подтверждения товара"):
+            Logger.add_start_step(method="move_to_checkout")
             self.get_current_url()
             self.click_checkout_button()
+            Logger.add_end_step(url=self.driver.current_url, method="move_to_checkout")

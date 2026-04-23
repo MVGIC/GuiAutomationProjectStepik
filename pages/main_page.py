@@ -4,6 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class MainPage(Base):
@@ -74,9 +75,11 @@ class MainPage(Base):
 
     def add_product_1_to_cart(self):
         with allure.step("Добавление товара в корзину"):
+            Logger.add_start_step(method="add_product_1_to_cart")
             self.get_current_url()
             self.click_select_product_1()
             self.click_cart()
+            Logger.add_end_step(url=self.driver.current_url, method="add_product_1_to_cart")
 
     def add_product_2_to_cart(self):
         """Добавление второго товара в корзину"""
