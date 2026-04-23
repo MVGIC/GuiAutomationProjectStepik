@@ -1,3 +1,4 @@
+import allure
 from faker import Faker
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
@@ -55,10 +56,10 @@ class ClientInformationPage(Base):
     # Methods (Steps)
 
     def input_client_information(self):
-        """Ввод клиентской информации при подтверждении покупки"""
-        fake = Faker()
-        self.get_current_url()
-        self.input_first_name(fake.first_name())
-        self.input_last_name(fake.last_name())
-        self.input_postal_code(fake.postcode())
-        self.click_continue_button()
+        with allure.step("Ввод клиентской информации при подтверждении покупки"):
+            fake = Faker()
+            self.get_current_url()
+            self.input_first_name(fake.first_name())
+            self.input_last_name(fake.last_name())
+            self.input_postal_code(fake.postcode())
+            self.click_continue_button()

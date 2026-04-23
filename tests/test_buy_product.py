@@ -1,5 +1,5 @@
 import time
-
+import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -14,6 +14,7 @@ from pages.payment_page import PaymentPage
 
 
 # @pytest.mark.run(order=3)
+@allure.description("Test buy product 1")
 def test_buy_product_1(set_group):
     """Тест по покупке товара включает в себя:
             авторизацию, выбор товара, заполнение данных получателя, подтверждение покупки."""

@@ -1,3 +1,5 @@
+import allure
+
 from base.base_class import Base
 
 
@@ -13,7 +15,7 @@ class FinishPage(Base):
     # Methods (Steps)
 
     def check_last_page(self):
-        """Проверка последней страницы"""
-        self.get_current_url()
-        self.assert_url("https://www.saucedemo.com/checkout-complete.html")
-        self.get_screenshot()
+        with allure.step("Проверка последней страницы"):
+            self.get_current_url()
+            self.assert_url("https://www.saucedemo.com/checkout-complete.html")
+            self.get_screenshot()

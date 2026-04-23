@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -8,7 +9,6 @@ from base.base_class import Base
 class MainPage(Base):
     """Класс содержащий локаторы и методы для Главной страницы"""
 
-
     # Locators
 
     select_product_1 = "//button[@id='add-to-cart-sauce-labs-backpack']"
@@ -17,7 +17,6 @@ class MainPage(Base):
     cart = "//div[@id='shopping_cart_container']"
     burger_menu = "//button[@id='react-burger-menu-btn']"
     link_about = "//a[@data-test='about-sidebar-link']"
-
 
     # Getters
 
@@ -41,7 +40,6 @@ class MainPage(Base):
         return WebDriverWait(self.driver, 15).until(
             EC.element_to_be_clickable((By.XPATH, self.burger_menu)))
 
-
     def get_link_about(self):
         return WebDriverWait(self.driver, 15).until(
             EC.element_to_be_clickable((By.XPATH, self.link_about)))
@@ -60,7 +58,6 @@ class MainPage(Base):
         self.get_select_product_3().click()
         print("Add product 3 to cart")
 
-
     def click_cart(self):
         self.get_cart().click()
         print("Click cart")
@@ -73,23 +70,22 @@ class MainPage(Base):
         self.get_link_about().click()
         print("Click link about")
 
-
     # Methods (Steps)
 
     def add_product_1_to_cart(self):
-        """Добавление товара в корзину"""
-        self.get_current_url()
-        self.click_select_product_1()
-        self.click_cart()
+        with allure.step("Добавление товара в корзину"):
+            self.get_current_url()
+            self.click_select_product_1()
+            self.click_cart()
 
     def add_product_2_to_cart(self):
-        """Добавление товара в корзину"""
+        """Добавление второго товара в корзину"""
         self.get_current_url()
         self.click_select_product_2()
         self.click_cart()
 
     def add_product_3_to_cart(self):
-        """Добавление товара в корзину"""
+        """Добавление третьего товара в корзину"""
         self.get_current_url()
         self.click_select_product_3()
         self.click_cart()
